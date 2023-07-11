@@ -6,7 +6,7 @@ const Header = ({ title, subtitle }) => {
     const colors = colorTemplate(theme.palette.mode);
 
   return (
-    <Box mb={32}>
+    <Box mb='32px'>
         <Typography
             variant="h2"
             color={colors.grey[100]}
