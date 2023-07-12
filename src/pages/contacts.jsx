@@ -1,10 +1,33 @@
 import { Box, useTheme } from "@mui/material";
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { 
+        DataGrid, 
+        GridToolbarContainer, 
+        GridToolbarColumnsButton,
+        GridToolbarFilterButton,
+        GridToolbarDensitySelector,
+        GridToolbarExport 
+       } from '@mui/x-data-grid';
 import { colorTemplate } from "../theme";
 import Header from "../components/global/Header";
 import { mockDataContacts } from "../data/mockData";
 
-const Team = () => {
+function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+        <GridToolbarExport 
+            csvOptions={{
+                fileName: 'Contacts Report'
+            }}
+        />
+      </GridToolbarContainer>
+    );
+  }
+  
+
+const Contacts = () => {
     const theme = useTheme();
     const colors = colorTemplate(theme.palette.mode);
     const Columns = [
@@ -90,11 +113,11 @@ const Team = () => {
             <DataGrid 
                 rows={mockDataContacts}
                 columns={Columns}
-                slots={{ toolbar: GridToolbar }}
+                slots={{ toolbar: CustomToolbar }}
             />
         </Box>
     </Box>
   )
 }
 
-export default Team;
+export default Contacts;

@@ -1,34 +1,35 @@
-import { Box, useTheme } from "@mui/material";
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { Box, useTheme, Typography } from "@mui/material";
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { colorTemplate } from "../theme";
 import Header from "../components/global/Header";
-import { mockDataContacts } from "../data/mockData";
+import { mockDataInvoices } from "../data/mockData";
 
-const Team = () => {
+function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport 
+            csvOptions={{
+                fileName: 'Invoice Report'
+            }}
+        />
+      </GridToolbarContainer>
+    );
+  }
+  
+
+const Invoices = () => {
     const theme = useTheme();
     const colors = colorTemplate(theme.palette.mode);
     const Columns = [
         { 
             field: 'id', 
             headerName: 'ID',
-            flex: 0.5
-        },
-        { 
-            field: 'registrarId', 
-            headerName: 'REGISTRAR ID',
         },
         { 
             field: 'name', 
             headerName: 'NAME', 
             flex: 1,
             cellClassName: 'name-column--cell',
-        },
-        { 
-            field: 'age', 
-            headerName: 'Age',
-            type: 'number',
-            headerAlign: 'left',
-            align: 'left',
         },
         { 
             field: 'email', 
@@ -41,25 +42,25 @@ const Team = () => {
             flex: 1,
         },
         { 
-            field: 'address', 
-            headerName: 'ADDRESS', 
+            field: 'cost', 
+            headerName: 'COST', 
             flex: 1,
+            renderCell: (params) => (
+                <Typography>
+                    ${params.row.cost}
+                </Typography>
+            )
         },
         { 
-            field: 'city', 
-            headerName: 'CITY', 
-            flex: 1,
-        },
-        { 
-            field: 'zipCode', 
-            headerName: 'ZIP CODE', 
+            field: 'date', 
+            headerName: 'DATE', 
             flex: 1,
         },
     ]
     
   return (
     <Box m='20px'>
-        <Header title='CONTACTS' subtitle='Contact List for future reference'/>
+        <Header title='INVOICES' subtitle='Invoice balance List'/>
         <Box m='40px 0 0 0 ' height='75vh' 
             sx={{
                 '& .MuiDataGrid-root': {
@@ -85,16 +86,22 @@ const Team = () => {
                 '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
                     color: `${colors.grey[100]} !important`,
                 },
+                '& .MuiCheckbox-root': {
+                    color: `${colors.greenAccent[200]} !important`,
+                },
             }}
         >
             <DataGrid 
-                rows={mockDataContacts}
+                checkboxSelection
+                rows={mockDataInvoices}
                 columns={Columns}
-                slots={{ toolbar: GridToolbar }}
+                slots={{
+                    toolbar: CustomToolbar,
+                }}
             />
         </Box>
     </Box>
   )
 }
 
-export default Team;
+export default Invoices;
