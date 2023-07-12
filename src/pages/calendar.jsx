@@ -44,13 +44,20 @@ const Calendar = () => {
     <Box m='20px'>
         <Header title='CALENDAR' subtitle='Full Calendar page for your reminders and events'/>
 
-        <Box display='flex' justifyContent='space-between'>
+        <Box display='flex' justifyContent='space-between' overflow='hidden'>
             {/* calendar sidebar */}
             <Box 
                 flex='1 1 20%' 
                 backgroundColor={colors.primary[400]}
                 p='15px'
                 borderRadius='4px'
+                height='75vh'
+                overflow='auto'
+                sx={{
+                    '&::-webkit-scrollbar':{
+                        width:0,
+                    }
+                }}
             >
                 <Typography variant="h5">Events</Typography>
                 <List>
@@ -81,6 +88,34 @@ const Calendar = () => {
             </Box>
 
             {/* Calendar */}
+            <Box flex='1 1 80%' ml='15px'>
+                <FullCalendar 
+                    height='75vh'
+                    plugins={[
+                        dayGridPlugin,
+                        timeGridPlugin,
+                        interactionPlugin,
+                        listPlugin
+                    ]}
+                    headerToolbar={{
+                        left: 'prev,next,today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    }}
+                    initialView="dayGridMonth"
+                    editable={true}
+                    selectable={true}
+                    selectMirror={true}
+                    dayMaxEvents={true}
+                    select={handleDateClick}
+                    eventClick={handleEventClick}
+                    eventsSet={(events) => setCurrentEvents(events)}
+                    initialEvents={[
+                        { id: '1234', title: 'All-day event', date: '2023-07-05' },
+                        { id: '1534', title: 'Timed event', date: '2023-07-09' },
+                    ]}
+                />
+            </Box>
         </Box>
     </Box>
   )
