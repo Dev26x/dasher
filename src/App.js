@@ -10,7 +10,7 @@ import Contacts from './pages/contacts';
 import Bar from './pages/bar';
 // import Line from './pages/line';
 import Form from './pages/form';
-// import Pie from './pages/pie';
+import Pie from './pages/pie';
 // import Geography from './pages/geography';
 import Calendar from './pages/calendar';
 
@@ -32,7 +32,7 @@ function App() {
               <Route path="/contacts" element={<Contacts />}/>
               <Route path="/form" element={<Form />}/>
               <Route path="/bar" element={<Bar />}/>
-              {/* <Route path="/pie" element={<Pie />}/> */}
+              <Route path="/pie" element={<Pie />}/>
               {/* <Route path="/line" element={<Line />}/> */}
               {/* <Route path="/geography" element={<Geography />}/> */}
               <Route path="/calendar" element={<Calendar />}/>
