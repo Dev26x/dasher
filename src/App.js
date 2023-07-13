@@ -7,7 +7,7 @@ import Sidebar from './components/global/Sidebar';
 import Team from './pages/team';
 import Invoices from './pages/invoices';
 import Contacts from './pages/contacts';
-// import Bar from './pages/bar';
+import Bar from './pages/bar';
 // import Line from './pages/line';
 import Form from './pages/form';
 // import Pie from './pages/pie';
@@ -31,7 +31,7 @@ function App() {
               <Route path="/invoices" element={<Invoices/>}/>
               <Route path="/contacts" element={<Contacts />}/>
               <Route path="/form" element={<Form />}/>
-              {/* <Route path="/bar" element={<Bar />}/> */}
+              <Route path="/bar" element={<Bar />}/>
               {/* <Route path="/pie" element={<Pie />}/> */}
               {/* <Route path="/line" element={<Line />}/> */}
               {/* <Route path="/geography" element={<Geography />}/> */}
