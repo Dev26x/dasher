@@ -8,7 +8,7 @@ import Team from './pages/team';
 import Invoices from './pages/invoices';
 import Contacts from './pages/contacts';
 import Bar from './pages/bar';
-// import Line from './pages/line';
+import Line from './pages/line';
 import Form from './pages/form';
 import Pie from './pages/pie';
 // import Geography from './pages/geography';
@@ -33,7 +33,7 @@ function App() {
               <Route path="/form" element={<Form />}/>
               <Route path="/bar" element={<Bar />}/>
               <Route path="/pie" element={<Pie />}/>
-              {/* <Route path="/line" element={<Line />}/> */}
+              <Route path="/line" element={<Line />}/>
               {/* <Route path="/geography" element={<Geography />}/> */}
               <Route path="/calendar" element={<Calendar />}/>
             </Routes>
