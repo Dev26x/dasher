@@ -94,25 +94,25 @@ const PieChart = () => {
                 match: {
                     id: 'ruby'
                 },
-                id: 'dots'
+                id: 'lines'
             },
             {
                 match: {
                     id: 'c'
                 },
-                id: 'dots'
+                id: 'lines'
             },
             {
                 match: {
                     id: 'go'
                 },
-                id: 'dots'
+                id: 'lines'
             },
             {
                 match: {
                     id: 'python'
                 },
-                id: 'dots'
+                id: 'lines'
             },
             {
                 match: {
