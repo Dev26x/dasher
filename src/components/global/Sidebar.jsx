@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -38,10 +39,12 @@ const Sidebar = () => {
   const colors = colorTemplate(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
+  const mobile = useMediaQuery(theme.breakpoints.up('sm','md'));
 
   return (
-    <Box
+    <Box 
       sx={{
+        height:'100%',
         '& .pro-sidebar-inner': {
           background: `${colors.primary[400]} !important`,
         },
@@ -59,7 +62,7 @@ const Sidebar = () => {
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
+      <ProSidebar collapsed={isCollapsed} breakPoint="xs" >
         <Menu iconShape="square">
           {/* logo and menu icon */}
           <MenuItem onClick={() => setIsCollapsed(!isCollapsed)}

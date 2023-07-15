@@ -1,4 +1,5 @@
 import { Box, Button, IconButton,Typography, useTheme } from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Header from "../components/global/Header";
 import { colorTemplate } from "../theme";
 import { mockTransactions } from "../data/mockData";
@@ -9,7 +10,6 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import LineChart from "../components/LineChart";
 import BarChart from "../components/Barchart";
-import PieChart from "../components/PieChart";
 import GeoChart from "../components/GeoChart";
 import ProgressCircle from "../components/ProgressCircle";
 import StatBox from "../components/StatBox";
@@ -17,10 +17,14 @@ import StatBox from "../components/StatBox";
 const Dashboard = () => {
   const theme = useTheme();
   const colors = colorTemplate(theme.palette.mode);
+  const mobile = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <Box m='20px'>
-      <Box display='flex' justifyContent='space-between' alignItems='center'>
+      <Box 
+        display={mobile ? 'flex' : 'block'} 
+        justifyContent={mobile ? 'space-between' : 'center'} 
+        alignItems='center'>
         <Header title='DASHBOARD' subtitle='Welcome to your dashboard'/>
         <Box>
           <Button
@@ -40,7 +44,9 @@ const Dashboard = () => {
 
         {/* Grid & charts */}
           <Box
-            display='grid'
+            display={mobile ? 'grid' : 'flex'}
+            flexDirection={mobile? 'undefined' : 'column'}
+            mt={mobile ? 'undefined' : '15px'}
             gridTemplateColumns='repeat(12, 1fr)'
             gridAutoRows='140px'
             gap='20px'

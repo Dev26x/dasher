@@ -1,15 +1,15 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { colorTemplate } from "../theme";
 import ProgressCircle from "./ProgressCircle";
-
-import React from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const StatBox = ({ title, subtitle, icon, progress, increase }) => {
     const theme = useTheme();
     const colors = colorTemplate(theme.palette.mode);
+    const mobile = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <Box width='100%' m='0 30px'>
+    <Box width='100%' m={mobile? '0 30px' : '20px 30px'}>
         <Box display='flex' justifyContent='space-between'>
             <Box>
                 {icon}
