@@ -137,15 +137,20 @@ const Dashboard = () => {
                 }
               />
             </Box>
-          </Box>
 
-          {/* Row 2 */}
+            {/* Row 2 */}
           <Box
             gridColumn='span 8'
             gridRow='span 2'
             backgroundColor ={colors.primary[400]}
           >
-            <Box mt='25px' padding='10px 30px' display='flex' justifyContent='space-between' alignItems='center'>
+            <Box 
+              mt='25px' 
+              padding='0 30px' 
+              display='flex' 
+              justifyContent='space-between' 
+              alignItems='center'
+            >
               <Box>
                 <Typography variant="h5" fontWeight='600' color={colors.grey[100]}>
                   Revenue Generated
@@ -165,14 +170,69 @@ const Dashboard = () => {
                 </IconButton>
               </Box>
             </Box>
-            <Box height='250px' ml='-20px'>
+            <Box height='250px' ml='-20px 0 0 0' pb='25px'>
                 <LineChart isDashboard={true}/>
             </Box>
           </Box>
-          <Box
-          
-          >
 
+          {/* transactions */}
+          <Box
+            gridColumn='span 4'
+            gridRow='span 2'
+            backgroundColor ={colors.primary[400]}
+            overflow='auto'
+            sx={{
+              '&::-webkit-scrollbar':{
+                  width:0,
+              }
+          }}
+          >
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              borderBottom={`4px solid ${colors.primary[500]}`}
+              colors={colors.grey[100]}
+              p="15px"
+            >
+              <Typography variant="h5" fontWeight='600' color={colors.grey[100]}>
+                Recent Transactions
+              </Typography>
+            </Box>
+              {mockTransactions.map((transaction, i ) => (
+                <Box
+                  key={`${transaction.txId}-${i}`}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  borderBottom={`4px solid ${colors.primary[500]}`}
+                  p="15px"
+                >
+                  <Box>
+                    <Typography
+                      color={colors.greenAccent[500]}
+                      variant="h5"
+                      fontWeight="600"
+                    >
+                      {transaction.txId}
+                    </Typography>
+                    <Typography color={colors.grey[100]}>
+                      {transaction.user}
+                    </Typography>
+                  </Box>
+                  <Box color={colors.grey[100]}>{transaction.date}</Box>
+                  <Box
+                    backgroundColor={colors.greenAccent[500]}
+                    p="5px 10px"
+                    borderRadius="4px"
+                  >
+                    ${transaction.cost}
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+
+             
           </Box>
     </Box>
   )
